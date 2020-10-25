@@ -53,7 +53,7 @@ class SignUp extends Component {
                     value='Sign Up'
                     onClick={this.handleSubmit}
                 />
-                <p>Already a member, <Link to="/component/signIn.js">SignIn</Link> here </p>
+                <p>Already a member, <Link to="/components/signIn.js">SignIn</Link> here </p>
             </div>
         )
     }

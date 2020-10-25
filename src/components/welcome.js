@@ -1,23 +1,25 @@
 import React, { useContext } from 'react'
 import firebaseDB from '../js/firebase';
-import { UserLoginStatus } from '../serviceProvider/serviceProvider.js'
-
-const UserData = useContext(UserLoginStatus);
+import { UserLoginStatus } from '../serviceProvider/serviceProvider.js';
+import { useHistory } from 'react-router-dom';
 
 
 const Welcome = () => {
-
-  /***  handleLogout = () => {
-        firebaseDB.auth().signOut();
-    }  */
-
+    const UserData = useContext(UserLoginStatus);
+    const history = useHistory();
+    const userSignOut = () => {
+    firebaseDB.auth().signOut();
+    history.replace('/components/signIn.js');
+}
+  
     return (
         <div>
             <h3>Welome {UserData.email} to your HomePage</h3>
+
             <input
                 type='button'
                 value='logout'
-                onClick={this.handleLogout}
+                onClick={userSignOut}
             />
         </div>
     )

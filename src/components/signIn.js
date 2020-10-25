@@ -28,6 +28,7 @@ import firebaseDB from '../js/firebase.js';
         firebaseDB.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
             console.log('there seems an error:', error);
           })
+        this.props.history.replace('./welcome.js');
     }
 
     render() {

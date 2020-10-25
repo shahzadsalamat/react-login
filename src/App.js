@@ -2,45 +2,38 @@ import React, { useState, useEffect, useContext } from 'react';
 import SignUp from './components/signUp.js';
 import SignIn from './components/signIn.js';
 import Welcome from './components/welcome.js';
-import { Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { UserLoginStatus } from './serviceProvider/serviceProvider.js'
 
 const App = () => {
 
-  const [user, setUser] = useState('soomething');
   const UserData = useContext(UserLoginStatus);
 
-  useEffect(() => {
-    setUser(UserData);
-    console.log('useeffect app:', user)
-  }, [user, UserData]);
-
- 
-
   return (
+    <Router>
     <div>
       {
-        
-        (user) ?
-          <Welcome />
+        (UserData) ?
+      
+            
+           
+          <div>
+              <Switch>
+               <Route exact path='/components/welcome.js'><Welcome/></Route>
+               </Switch>
+          </div>
           :
-          <Switch>
-            <Route exact path="/component/signIn.js">
-              <SignIn />
-            </Route>
-            <Route exact path="/" >
-              <SignUp />
-            </Route>
-          </Switch>
+          <div>
+           <Switch>
+              <Route exact path='/' component={SignUp} />
+              <Route path='/components/signIn.js' component={SignIn} />
+              </Switch>
+              </div> 
       }
-    {console.log('user exist:', user)}
     </div>
+    </Router>
   )
 
-
-
-
 }
- 
 
 export default App;
