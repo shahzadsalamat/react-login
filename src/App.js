@@ -1,9 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import SignUp from './components/signUp.js';
 import SignIn from './components/signIn.js';
 import Welcome from './components/welcome.js';
+import ForgotPassword from './components/forgotPassword.js';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { UserLoginStatus } from './serviceProvider/serviceProvider.js'
+import AddProfile from './components/addProfile.js';
+import './css/style.css';
 
 const App = () => {
 
@@ -11,26 +14,27 @@ const App = () => {
 
   return (
     <Router>
-    <div>
-      {
-        (UserData) ?
-      
-            
-           
-          <div>
+      <div>
+        {
+          (UserData) ?
+            <div>
               <Switch>
-               <Route exact path='/components/welcome.js'><Welcome/></Route>
-               </Switch>
-          </div>
-          :
-          <div>
-           <Switch>
-              <Route exact path='/' component={SignUp} />
-              <Route path='/components/signIn.js' component={SignIn} />
+                <Route exact path='/'><Welcome /></Route>
+                <Route path='/components/addProfile.js' component={AddProfile} />
+
               </Switch>
-              </div> 
-      }
-    </div>
+            </div>
+            :
+            <div>
+              <Switch>
+                <Route exact path='/' component={SignIn} />
+                <Route path='/components/signUp.js' component={SignUp} />
+                <Route path='/components/forgotPassword.js' component={ForgotPassword} />
+
+              </Switch>
+            </div>
+        }
+      </div>
     </Router>
   )
 

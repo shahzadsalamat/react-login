@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    text-decoration: none;
+    color: black;
+  }
+  .container {
+   background-color: #07BE95;
+   height: 100vh;
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+} 
+.container-left {
+   display: flex;
+   flex-direction: column;
+   background-color: #07BE95;
+   height: 100vh;
+   width: 40%;
+   color: white;
+   justify-content: center;
+   align-items: center;
+}
+
+.container-right {
+   background-color: white;
+   height: 100vh;
+   width: 60%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   overflow: hidden;
+}
+
+.container-content {
+   background-color: white;
+   height: 80vh;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-self: self-end;
+   overflow: hidden;
+   align-items: center;
+}
+
+.container-header {
+   background-color: #07BE95;
+   color:white;
+   height: 20vh;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-self: self-start;
+   align-items: center;
+}
+.signIn-form {
+   display: flex;
+   flex-flow: column nowrap;
+   margin: 10px;
+   max-width: 300px;
+   align-self: center;
+
+}
+.form-input {
+    padding: 5px;
+    padding-left: 17px;
+    border-width: 1px;
+    color: #000000;
+    border-radius: 20px;
+    line-height: 30px;
+   margin-bottom: 12px;
+   border-width: 2px;
+border-style: solid;
+}
+
+.form-button {
+	background:linear-gradient(to bottom, #07be96 5%, #1fad8c 100%);
+	border-radius:5px;
+	border:none;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:14px;
+	padding:9px 35px;
+
+}
+.form-button:hover {
+	background:linear-gradient(to bottom, #1fad8c 5%, #07be96 100%);
+	background-color:#1fad8c;
+}
+
+.error-message {
+   color: red;
+}
+
+/**welcome page**/
+
+.delete-update-button-container {
+   padding-top: 20px;
+}
+
+.delete-button {
+	background:linear-gradient(to bottom, #be0726 5%, #c73217 100%);
+	
+}
+
+.delete-button:hover {
+	background:linear-gradient(to bottom, #c2262e 5%, #833219 100%);
+	background-color:#1fad8c;
+}
+
+
