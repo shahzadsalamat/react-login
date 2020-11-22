@@ -19,7 +19,7 @@ const App = () => {
           (UserData) ?
             <div>
               <Switch>
-                <Route exact path='/'><Welcome /></Route>
+                <Route path='/'><Welcome /></Route>
                 <Route path='/components/addProfile.js' component={AddProfile} />
 
               </Switch>
@@ -27,7 +27,7 @@ const App = () => {
             :
             <div>
               <Switch>
-                <Route exact path='/' component={SignIn} />
+                <Route path='/' component={SignIn} />
                 <Route path='/components/signUp.js' component={SignUp} />
                 <Route path='/components/forgotPassword.js' component={ForgotPassword} />
 
