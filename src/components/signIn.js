@@ -43,8 +43,8 @@ class SignIn extends Component {
         return (
             <div className='container'>
                 <div className='container-left'>
-                <h3>React and firebase project for Login</h3>
-                <h1>Sign In!</h1> 
+                    <h3>React and firebase project for Login</h3>
+                    <h1>Sign In!</h1>
                 </div>
                 <div className='container-right'>
                     <div className='signIn-form'>
@@ -71,8 +71,8 @@ class SignIn extends Component {
                             value='Login'
                             onClick={this.handleSubmit}
                         />
-                        <Link to="/components/forgotPassword.js"><p>forgot password</p></Link>
-                        <p>New here! create new user, <Link to="/components/signUp.js">SignUp</Link> here </p>
+                        <Link to="/react-login/components/forgotPassword.js"><p>forgot password</p></Link>
+                        <p>New here! create new user, <Link to="/react-login/components/signUp.js">SignUp</Link> here </p>
                     </div>
                 </div>
             </div>

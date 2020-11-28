@@ -21,7 +21,7 @@ const App = () => {
             <div>
               <Switch>
                 <Route exact path='/react-login'><Welcome /></Route>
-                <Route path='/components/addProfile.js' component={AddProfile} />
+                <Route path='/react-login/components/addProfile.js' component={AddProfile} />
                 <Route component={PageNotFound} />
               </Switch>
             </div>
@@ -29,8 +29,8 @@ const App = () => {
             <div>
               <Switch>
                 <Route exact path='/react-login' component={SignIn} />
-                <Route path='/components/signUp.js' component={SignUp} />
-                <Route path='/components/forgotPassword.js' component={ForgotPassword} />
+                <Route path='/react-login/components/signUp.js' component={SignUp} />
+                <Route path='/react-login/components/forgotPassword.js' component={ForgotPassword} />
                 <Route component={PageNotFound} />
               </Switch>
             </div>
