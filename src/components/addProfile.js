@@ -5,40 +5,43 @@ import { useHistory } from 'react-router-dom'
 
 const AddProfile = () => {
     const userData = useContext(UserLoginStatus);
-    const [displayName, setDisplayName] = useState(`${userData.displayName}`);
-    const [photoURL, setPhotoURL] = useState('https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg');
+    const [user, setUser] = useState({
+        displayName: userData.displayName,
+        photoURL: userData.photoURL
+    });
+    const [photoURL, setPhotoURL] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
     const history = useHistory();
 
     const handleFileUploadChange = (e) => {
-            setPhotoURL(e.target.files[0])
+        setPhotoURL(e.target.files[0])
     }
 
     const handleSubmit = () => {
+        // console.log('add profile page:::', user.displayName);
         firebaseDB.auth().currentUser.updateProfile({
-            displayName: displayName,
+            displayName: user.displayName,
+        }).then(() => {
+            firebaseDB.storage().ref(`images/${userData.uid}/profilePhoto`).put(photoURL)
+                .catch((error) => {
+                    setErrorMessage(error.message);
+                    console.log('error update name', error.message)
+                })
         })
-        .then(() => {
-                firebaseDB.storage().ref(`images/${userData.uid}/profilePhoto`).put(photoURL)
-                    .catch((error) => {
-                        setErrorMessage(error.message);
-                        console.log('error update name', error.message)
-                    })
-            })
-        .catch((error) => {
+            .catch((error) => {
                 setErrorMessage(error.message);
-                console.log('error update name', error.message);
+                // console.log('error update name', error.message);
             })
-        .then(() => {
-                history.replace('/')
+            .then(() => {
+                history.replace('/react-login')
             })
     }
 
     return (
         <div>
             <div className='container-header'>
-                <p>{userData.email}</p>
+                <h1>Edit your profile here</h1>
             </div>
             <div className='container-content'>
                 {(errorMessage) ? <p>{errorMessage}</p> : <p>Add your profile information here</p>}
@@ -47,9 +50,11 @@ const AddProfile = () => {
                         className='form-input'
                         type='text'
                         name='displayName'
-                        value={displayName}
-                        placeholder='enter your name'
-                        onChange={(e) => setDisplayName(e.target.value)}
+                        value={user.displayName ? user.displayName : ''}
+                        placeholder='enter you name'
+                        onChange={(e) => setUser({
+                            [e.target.name]: e.target.value,
+                        })}
                     />
                     <br />
                     <input

@@ -3,6 +3,7 @@ import SignUp from './components/signUp.js';
 import SignIn from './components/signIn.js';
 import Welcome from './components/welcome.js';
 import ForgotPassword from './components/forgotPassword.js';
+import PageNotFound from './components/pageNotFound.js';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { UserLoginStatus } from './serviceProvider/serviceProvider.js'
 import AddProfile from './components/addProfile.js';
@@ -19,18 +20,18 @@ const App = () => {
           (UserData) ?
             <div>
               <Switch>
-                <Route path='/'><Welcome /></Route>
+                <Route exact path='/react-login'><Welcome /></Route>
                 <Route path='/components/addProfile.js' component={AddProfile} />
-
+                <Route component={PageNotFound} />
               </Switch>
             </div>
             :
             <div>
               <Switch>
-                <Route path='/' component={SignIn} />
+                <Route exact path='/react-login' component={SignIn} />
                 <Route path='/components/signUp.js' component={SignUp} />
                 <Route path='/components/forgotPassword.js' component={ForgotPassword} />
-
+                <Route component={PageNotFound} />
               </Switch>
             </div>
         }

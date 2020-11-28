@@ -1,9 +1,6 @@
 import React, {useState} from 'react';
 import firebaseDB from '../js/firebase';
 
-
-
-
 const ForgotPassword = () => {
     const [emailToSendEmail, setEmailToSendEmail] = useState('');
     

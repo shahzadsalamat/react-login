@@ -7,7 +7,7 @@ export const UserLoginStatus = React.createContext('');
 
 const ServiceProvider = () => {
     const [user, setUser] = useState('');
-    
+
     useEffect(() => {
         firebaseDB.auth().onAuthStateChanged((userStatus) => {
             setUser(userStatus);

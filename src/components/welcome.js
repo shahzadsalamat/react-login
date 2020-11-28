@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import firebaseDB from '../js/firebase';
 import { UserLoginStatus } from '../serviceProvider/serviceProvider.js';
 import { Link, useHistory } from 'react-router-dom';
@@ -11,33 +11,36 @@ const Welcome = () => {
 
     const userSignOut = () => {
         firebaseDB.auth().signOut();
-        history.replace('/');
+        history.replace('/react-login');
     }
 
     const deleteUser = () => {
         var user = firebaseDB.auth().currentUser;
-        user.delete().then(function () {
+        user.delete().then(() => {
             alert('Your account deleted successfully')
-        }).catch(function (error) {
-            alert(error)
+        }).catch((error) => {
+            alert(error.message)
         });
-        history.replace('/');
+        history.replace('/react-login');
     }
 
-    const profilePhoto = firebaseDB.storage().ref(`images/${UserData.uid}/profilePhoto`);
-    profilePhoto.getDownloadURL()
-        .then((url) => {
-            if (url) {
-                setPhotoURL(url);
-                console.log('photoURL:', url)
-            }
-            else {
-                setPhotoURL('');
-            }
-        })
-        .catch((error) => {
-            console.log('fetch photo failed:', error.message)
-        })
+    useEffect(() => {
+        const profilePhoto = firebaseDB.storage().ref(`images/${UserData.uid}/profilePhoto`);
+        profilePhoto.getDownloadURL()
+            .then((url) => {
+                if (url) {
+                    setPhotoURL(url);
+                }
+                else {
+                    setPhotoURL('');
+                }
+            })
+            .catch((error) => {
+                console.log('fetch photo failed:', error.message)
+            });
+    })
+
+
 
     return (
         <div>
@@ -53,34 +56,33 @@ const Welcome = () => {
                 <img src={photoURL ? photoURL : require('../images/user-icon.png')} alt="profile" width="100" height="100" />
                 <p>{UserData.photoURL}</p>
                 <p>{UserData.emailVerified}</p>
-                {console.log(JSON.stringify(UserData))}
                 <input
                     className='form-button'
                     type='button'
                     value='logout'
                     onClick={userSignOut}
                 />
-               
+
                 <div className='delete-update-button-container'>
 
-                <Link to='/components/addProfile.js'>
-                    <input
-                        className='form-button'
-                        type='button'
-                        value='update profile'
-                    />
-                </Link>
+                    <Link to='/components/addProfile.js'>
+                        <input
+                            className='form-button'
+                            type='button'
+                            value='update profile'
+                        />
+                    </Link>
 
-                <input
-                    className='form-button delete-button'
-                    type='button'
-                    value='delete Account'
-                    onClick={deleteUser}
-                />
+                    <input
+                        className='form-button delete-button'
+                        type='button'
+                        value='delete Account'
+                        onClick={deleteUser}
+                    />
 
                 </div>
-               
-               
+
+
             </div>
         </div>
     )

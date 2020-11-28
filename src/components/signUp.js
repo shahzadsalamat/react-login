@@ -7,7 +7,8 @@ class SignUp extends Component {
         this.state = {
             user: {
                 email: '',
-                password: ''
+                password: '',
+                confirmPassword: ''
             },
             errorMessage: ''
 
@@ -26,16 +27,25 @@ class SignUp extends Component {
     handleSubmit = () => {
         const email = this.state.user.email;
         const password = this.state.user.password;
-        firebaseDB.auth().createUserWithEmailAndPassword(email, password)
-            .then(() => {
-                console.log('sucess message');
-                this.props.history.replace('../')
-            })
-            .catch((error) => {
-                this.setState({
-                    errorMessage: error.message
+        const confirmPassword = this.state.user.confirmPassword;
+        if (password === confirmPassword) {
+            firebaseDB.auth().createUserWithEmailAndPassword(email, password)
+                .then(() => {
+                    // console.log('sucess message');
+                    this.props.history.replace('../react-login')
                 })
+                .catch((error) => {
+                    this.setState({
+                        errorMessage: error.message
+                    })
+                })
+        }
+        else {
+            this.setState({
+                errorMessage: "Passwords don't match"
             })
+        }
+
     }
 
     render() {
@@ -48,7 +58,7 @@ class SignUp extends Component {
                 <div className='container-right'>
                     <div className='signIn-form'>
                         <h3> Create Your Account Here! </h3>
-                        {(this.state.errorMessage) ? <p className='error-message'>{this.state.errorMessage}</p> : <p>Please fill the signUp form</p>}     
+                        {(this.state.errorMessage) ? <p className='error-message'>{this.state.errorMessage}</p> : <p>Please fill the signUp form</p>}
                         <input
                             className='form-input'
                             type='email'
@@ -58,11 +68,19 @@ class SignUp extends Component {
                             onChange={this.handleChange}
                         />
                         <input
-                             className='form-input'
+                            className='form-input'
                             type='password'
                             name='password'
                             value={this.state.user.password}
                             placeholder='enter your password'
+                            onChange={this.handleChange}
+                        />
+                        <input
+                            className='form-input'
+                            type='password'
+                            name='confirmPassword'
+                            value={this.state.user.confirmPassword}
+                            placeholder='re-enter your password'
                             onChange={this.handleChange}
                         />
                         <input
