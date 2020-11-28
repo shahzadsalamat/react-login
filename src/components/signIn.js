@@ -30,7 +30,7 @@ class SignIn extends Component {
         firebaseDB.auth().signInWithEmailAndPassword(email, password)
             .then(() => {
                 // console.log('login was success')
-                this.props.history.replace('../')
+                this.props.history.replace('../react-login')
             })
             .catch((error) => {
                 this.setState({
