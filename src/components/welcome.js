@@ -65,7 +65,7 @@ const Welcome = () => {
 
                 <div className='delete-update-button-container'>
 
-                    <Link to='/components/addProfile.js'>
+                    <Link to='/react-login/components/addProfile.js'>
                         <input
                             className='form-button'
                             type='button'
