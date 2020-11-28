@@ -29,8 +29,7 @@ class SignIn extends Component {
         const password = this.state.user.password;
         firebaseDB.auth().signInWithEmailAndPassword(email, password)
             .then(() => {
-                // console.log('login was success')
-                this.props.history.replace('../')
+                 console.log('login was success')
             })
             .catch((error) => {
                 this.setState({
