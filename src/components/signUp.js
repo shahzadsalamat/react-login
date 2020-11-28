@@ -32,7 +32,7 @@ class SignUp extends Component {
             firebaseDB.auth().createUserWithEmailAndPassword(email, password)
                 .then(() => {
                     // console.log('sucess message');
-                    this.props.history.replace('../react-login')
+                    this.props.history.replace('../')
                 })
                 .catch((error) => {
                     this.setState({
