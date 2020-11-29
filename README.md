@@ -1,10 +1,10 @@
 # react-login
 
-for live demo of the project: 
+1. Introduction: this project is detail login session for user using react and firebase.
 
-https://shahzadsalamat.github.io/react-login/
+2. LIVE DEMO: https://shahzadsalamat.github.io/react-login/
 
-Techonolgies used in this project are listed below:
-- HTML, CSS
--Firebase: firebase auth, firebase store, firebase databases
--React: react hooks, react router
+3. Techonolgies:
+  HTML, CSS
+  Firebase: firebase auth, firebase store, firebase databases
+  React: react hooks, react router
